@@ -1,0 +1,27 @@
+# Simple Calculator
+
+# Function Definitions
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def divide(a, b):
+    if b != 0:
+        return a / b
+    else:
+        return "Error! Division by zero."
+
+# Input from the user
+a = float(input("Enter the first number: "))
+b = float(input("Enter the second number: "))
+
+# Output
+print("The addition is:", add(a, b))
+print("The subtraction is:", subtract(a, b))
+print("The multiplication is:", multiply(a, b))
+print("The division is:", divide(a, b))
