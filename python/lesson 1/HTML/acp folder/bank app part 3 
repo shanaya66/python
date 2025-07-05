@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bank App Part 3 - Let's Calculate</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(to top right, #e0f7fa, #fce4ec);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 450px;
+      padding: 30px;
+      text-align: center;
+    }
+    h1 {
+      color: #ff69b4;
+      font-size: 28px;
+    }
+    .balance {
+      font-size: 24px;
+      margin: 20px 0;
+      color: #009688;
+    }
+    input, select, button {
+      width: 90%;
+      padding: 10px;
+      margin: 10px auto;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background-color: #ffb6c1;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #ff69b4;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: #fce4ec;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏦 Bank App Part 3</h1>
+    <p class="balance">Total Balance: ₹<span id="balance">0</span></p>
+
+    <input type="number" id="amount" placeholder="Enter amount" />
+    <select id="type">
+      <option value="income">Income</option>
+      <option value="expense">Expense</option>
+    </select>
+    <button onclick="addTransaction()">Add Transaction 💰</button>
+
+    <ul id="history"></ul>
+  </div>
+
+  <script>
+    let balance = 0;
+    const balanceEl = document.getElementById("balance");
+    const historyEl = document.getElementById("history");
+
+    function addTransaction() {
+      const amount = parseInt(document.getElementById("amount").value);
+      const type = document.getElementById("type").value;
+
+      if (!amount || amount <= 0) return alert("Enter a valid amount!");
+
+      const li = document.createElement("li");
+      li.textContent = `${type === "income" ? "💵" : "🛍️"} ${type}: ₹${amount}`;
+      historyEl.appendChild(li);
+
+      balance += type === "income" ? amount : -amount;
+      balanceEl.textContent = balance;
+      document.getElementById("amount").value = "";
+    }
+  </script>
+</body>
+</html>

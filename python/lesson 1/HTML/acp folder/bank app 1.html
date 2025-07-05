@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bank App - Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #d0e6f6, #fef6f9);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 12 
+    }
+
+    .bank-app {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      padding: 30px;
+      width: 350px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #2b7cfc;
+      margin-bottom: 10px;
+    }
+
+    input[type="number"], input[type="text"] {
+      padding: 10px;
+      margin: 10px 0;
+      width: 90%;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #ffc107;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      margin: 5px;
+    }
+
+    button:hover {
+      background-color: #ffa000;
+    }
+
+    .output {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .output span {
+      display: block;
+      margin: 5px 0;
+    }
+
+    .income, .expense {
+      font-weight: bold;
+    }
+
+    .income {
+      color: green;
+    }
+
+    .expense {
+      color: red;
+    }
+
+    .balance {
+      font-size: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="bank-app">
+    <h1>Bank Tracker</h1>
+    <input type="text" id="description" placeholder="Description (e.g. Salary, Snacks)">
+    <input type="number" id="amount" placeholder="Amount (use - for expense)">
+    <br>
+    <button onclick="addTransaction()">Add</button>
+    
+    <div class="output">
+      <span class="income">Total Income: ₹<span id="income">0</span></span>
+      <span class="expense">Total Expense: ₹<span id="expense">0</span></span>
+      <span class="balance">Balance: ₹<span id="balance">0</span></span>
+    </div>
+  </div>
+
+  <script>
+    let totalIncome = 0;
+    let totalExpense = 0;
+
+    function addTransaction() {
+      const amount = parseFloat(document.getElementById("amount").value);
+      if (isNaN(amount)) {
+        alert("Please enter a valid amount.");
+        return;
+      }
+
+      if (amount >= 0) {
+        totalIncome += amount;
+      } else {
+        totalExpense += Math.abs(amount);
+      }
+
+      const balance = totalIncome - totalExpense;
+      document.getElementById("income").textContent = totalIncome;
+      document.getElementById("expense").textContent = totalExpense;
+      document.getElementById("balance").textContent = balance;
+
+      // Clear inputs
+      document.getElementById("description").value = "";
+      document.getElementById("amount").value = "";
+    }
+  </script>
+</body>
+</html>

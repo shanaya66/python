@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Bank App Part 2</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to bottom right, #f0faff, #ffe8f3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .app-container {
+      background-color: white;
+      border-radius: 25px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      width: 400px;
+      max-width: 95%;
+    }
+
+    h1 {
+      color: #ff7ab2;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: 2px solid #ffd6ec;
+      font-size: 15px;
+    }
+
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      background-color: #ffbae8;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff84cc;
+    }
+
+    .summary {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .summary span {
+      display: block;
+      margin: 5px;
+    }
+
+    .history {
+      margin-top: 20px;
+      max-height: 150px;
+      overflow-y: auto;
+      border-top: 1px dashed #ffb6d9;
+      padding-top: 10px;
+    }
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .income { color: green; }
+    .expense { color: red; }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <h1>🌸 Cute Bank Tracker 🌸</h1>
+    <input type="text" id="description" placeholder="What's this for? (e.g. Lunch)">
+    <input type="number" id="amount" placeholder="Amount (+/-)">
+    <select id="category">
+      <option value="Food">🍔 Food</option>
+      <option value="Gifts">🎁 Gifts</option>
+      <option value="Savings">💰 Savings</option>
+      <option value="Toys">🧸 Toys</option>
+      <option value="Other">✨ Other</option>
+    </select>
+    <button onclick="addTransaction()">Add Transaction</button>
+
+    <div class="summary">
+      <span class="income">Total Income: ₹<span id="income">0</span></span>
+      <span class="expense">Total Expense: ₹<span id="expense">0</span></span>
+      <span class="balance">Balance: ₹<span id="balance">0</span></span>
+    </div>
+
+    <div class="history" id="history">
+      <h3>🧾 Transaction History</h3> 
+    </div>
+  </div>
+
+  <script>
+    let totalIncome = 0;
+    let totalExpense = 0;
+
+    function addTransaction() {
+      const desc = document.getElementById("description").value;
+      const amt = parseFloat(document.getElementById("amount").value);
+      const category = document.getElementById("category").value;
+
+      if (!desc || isNaN(amt)) {
+        alert("Fill in all fields!");
+        return;
+      }
+
+      const historyBox = document.getElementById("history");
+      const entry = document.createElement("div");
+      entry.classList.add("history-item");
+
+      if (amt >= 0) {
+        totalIncome += amt;
+        entry.innerHTML = `<span>💖 ${desc} (${category})</span><span class="income">+ ₹${amt}</span>`;
+      } else {
+        totalExpense += Math.abs(amt);
+        entry.innerHTML = `<span>💔 ${desc} (${category})</span><span class="expense">- ₹${Math.abs(amt)}</span>`;
+      }
+
+      historyBox.appendChild(entry);
+
+      const balance = totalIncome - totalExpense;
+      document.getElementById("income").textContent = totalIncome;
+      document.getElementById("expense").textContent = totalExpense;
+      document.getElementById("balance").textContent = balance;
+
+      document.getElementById("description").value = "";
+      document.getElementById("amount").value = "";
+    }
+  </script>
+</body>
+</html>

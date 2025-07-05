@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blue Sky Café Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to top right, #74ebd5, #acb6e5);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      margin-top: 40px;
+      font-size: 2.5rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00dbde, #fc00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .portfolio-section {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 800px;
+      margin: 30px auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-card {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      transition: 0.3s;
+    }
+
+    .project-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00dbde, 0 0 25px #fc00ff;
+    }
+
+    .project-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      padding: 10px 30px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(90deg, #00c9ff, #92fe9d);
+      color: #000;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(90deg, #ff6ec4, #7873f5);
+      color: #fff;
+    }
+
+    footer {
+      margin: 40px 0 10px;
+      font-size: 0.9rem;
+      color: #e0e0e0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    ☁️ Blue Sky Café ☁️
+  </header>
+
+  <section class="portfolio-section">
+    <h2>🍰 Welcome to Our Sweet Café 🍰</h2>
+    <p>Step into a cozy world where fluffy pastries, buttery croissants, and colorful macarons fill the air with sweetness. Our café brings the perfect blue sky vibe, serving delightful treats fresh out of the oven every day!</p>
+
+    <div class="project-card">
+      <img src="ChatGPT Image Apr 26, 2025, 11_33_32 AM.png" alt="Pastry Corner">
+      <h3>🥐 Croissant Heaven</h3>
+      <p>Our signature croissants are golden, flaky, and melt-in-your-mouth good. Pair them with our hand-crafted lattes for the ultimate treat under the open skies!</p>
+    </div>
+
+    <div class="project-card">
+      <img src="Screenshot 2025-04-27 at 10.07.57 AM.png"
+      <h3>🍭 Macaron Magic</h3>
+      <p>Bright, colorful, and bursting with flavor — our macarons are a little bite of happiness! Choose from dreamy flavors like blueberry cloud, strawberry kiss, and vanilla breeze.</p>
+    </div>
+
+    <button class="submit-btn">Submit Now</button>
+  </section>
+
+  <footer>
+    Made with love under the Blue Skies Café .
+  </footer>
+</body>
+</html>
