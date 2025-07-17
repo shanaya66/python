@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kawaii Weather Fetcher ⛅</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #f5f7fa, #c3cfe2);
+      font-family: 'Comic Sans MS', cursive;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 30px 50px;
+      text-align: center;
+      max-width: 400px;
+    }
+
+    h1 {
+      color: #ff69b4;
+    }
+
+    button {
+      background-color: #ffb6c1;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff6ec7;
+      color: white;
+    }
+
+    .output {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🌈 Weather Fetcher</h1>
+    <p>Click below to fetch weather data async-style!</p>
+    <button onclick="getWeather()">✨ Fetch Weather ✨</button>
+    <div class="output" id="output">Waiting for magic... 🧚</div>
+  </div>
+
+  <script>
+    async function getWeather() {
+      const output = document.getElementById('output');
+      output.innerHTML = '🌸 Loading magical weather data...';
+
+      try {
+        // Simulate an async fetch call
+        const response = await fetch('https://dummyjson.com/products/1');
+        const data = await response.json();
+
+        // Cute fake weather text from dummy data
+        output.innerHTML = `
+          ☀️ Temperature: 24°C<br>
+          🌬️ Wind: Light breeze<br>
+          🌸 Tip of the day: "${data.description}"
+        `;
+      } catch (error) {
+        output.innerHTML = '⚠️ Oops! Something went wrong...';
+        console.error(error);
+      }
+    }
+  </script>
+</body>
+</html>
