@@ -1,0 +1,95 @@
+from tkinter import *
+from tkinter import messagebox
+
+# -------------------- Main Window --------------------
+root = Tk()
+root.title("💰 Denomination Calculator")
+root.geometry("600x600")
+root.resizable(False, False)
+
+# Create gradient background using Canvas
+canvas = Canvas(root, width=600, height=600)
+canvas.pack(fill="both", expand=True)
+
+# Simulated vertical gradient
+for i in range(256):
+    r = 240 - i // 3
+    g = 250 - i // 5
+    b = 255 - i // 6
+    color = f"#{r:02x}{g:02x}{b:02x}"
+    canvas.create_line(0, i*3, 600, i*3, fill=color)
+
+# -------------------- Welcome Label --------------------
+title_label = Label(
+    root,
+    text="Hey User! Welcome to the Denomination Calculator App",
+    font=("Helvetica", 14, "bold"),
+    bg="#f0f8ff",
+    fg="#333"
+)
+title_label.place(x=50, y=50)
+
+# -------------------- Function to Open Calculator Window --------------------
+def topwin():
+    def calculator():
+        try:
+            amount = int(entry1.get())
+            note2000 = amount // 2000
+            amount %= 2000
+            note500 = amount // 500
+            amount %= 500
+            note100 = amount // 100
+
+            t1.delete(0, END)
+            t1.insert(END, str(note2000))
+            t2.delete(0, END)
+            t2.insert(END, str(note500))
+            t3.delete(0, END)
+            t3.insert(END, str(note100))
+        except ValueError:
+            messagebox.showerror("Error", "Please enter a valid amount!")
+
+    top = Toplevel(root)
+    top.title("💵 Denomination Breakdown")
+    top.geometry("400x400")
+    top.configure(bg="#e6f7ff")
+
+    Label(top, text="Enter total amount:", font=("Arial", 12), bg="#e6f7ff").place(x=80, y=50)
+    entry1 = Entry(top, font=("Arial", 12))
+    entry1.place(x=200, y=50)
+
+    Label(top, text="Here are the numbers of notes for each denomination:", font=("Arial", 10), bg="#e6f7ff").place(x=50, y=100)
+
+    Label(top, text="2000", font=("Arial", 12, "bold"), bg="#e6f7ff").place(x=100, y=150)
+    Label(top, text="500", font=("Arial", 12, "bold"), bg="#e6f7ff").place(x=100, y=190)
+    Label(top, text="100", font=("Arial", 12, "bold"), bg="#e6f7ff").place(x=100, y=230)
+
+    t1 = Entry(top, font=("Arial", 12))
+    t1.place(x=200, y=150)
+    t2 = Entry(top, font=("Arial", 12))
+    t2.place(x=200, y=190)
+    t3 = Entry(top, font=("Arial", 12))
+    t3.place(x=200, y=230)
+
+    Button(top, text="Calculate", font=("Arial", 12, "bold"), bg="#4CAF50", fg="white", command=calculator).place(x=150, y=300)
+
+# -------------------- Main Page Button --------------------
+def msg():
+    msgbox = messagebox.showinfo("📢 Alert", "Do you want to calculate the denomination count?")
+    if msgbox == "ok":
+        topwin()
+
+btn_start = Button(
+    root,
+    text="Start Calculation",
+    font=("Helvetica", 12, "bold"),
+    bg="#4CAF50",
+    fg="white",
+    activebackground="#45a049",
+    relief=RIDGE,
+    command=msg
+)
+btn_start.place(x=200, y=200, width=200, height=40)
+
+root.mainloop()
+
